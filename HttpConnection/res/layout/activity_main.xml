@@ -1,0 +1,39 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context="edu.ntu.android.learning.MainActivity" >
+
+    <Button
+        android:id="@+id/http_get"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="22dp"
+        android:text="Http Get" />
+
+    <Button
+        android:id="@+id/http_range"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/http_get"
+        android:layout_below="@+id/http_get"
+        android:layout_marginTop="18dp"
+        android:text="Http Range" />
+
+    <TextView
+        android:id="@+id/textView1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/http_range"
+        android:layout_below="@+id/http_range"
+        android:layout_marginTop="20dp"
+        android:text="After clicking the button 'Http Range', app will download the file located at http://download.thinkbroadband.com/100MB.zip, with the range from 20 to 30" />
+
+</RelativeLayout>
