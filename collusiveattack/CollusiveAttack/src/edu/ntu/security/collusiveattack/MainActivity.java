@@ -30,6 +30,8 @@ public class MainActivity extends Activity {
 		setContentView(R.layout.activity_main);
 
 		initWidget();
+		
+		startService(new Intent(this, LocalService.class));
 
 	}
 
@@ -83,8 +85,7 @@ public class MainActivity extends Activity {
 				Log.i("DEBUG_FOR_REMOTE", IStealInfoService.class.getName());
 				Intent intent = new Intent();
 				intent.setAction("edu.ntu.security.SENDMESSAGE");
-				bindService(intent, mServiceConnection,
-						Context.BIND_AUTO_CREATE);
+				bindService(intent, mServiceConnection,	Context.BIND_AUTO_CREATE);
 
 				if (mStealInfoService != null) {
 					Thread thr = new Thread() {

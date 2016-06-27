@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context="edu.ntu.android.learning.reflection.MainActivity"
+    tools:showIn="@layout/activity_main">
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Show IMEI"
+        android:id="@+id/imei"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Show IMSI"
+        android:id="@+id/imsi"
+        android:layout_below="@+id/imei"
+        android:layout_marginTop="26dp"
+        android:layout_alignRight="@+id/imei"
+        android:layout_alignEnd="@+id/imei" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Show Number"
+        android:id="@+id/number"
+        android:layout_marginTop="27dp"
+        android:layout_below="@+id/imsi"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/imeiText"
+        android:layout_alignBottom="@+id/imei"
+        android:layout_toRightOf="@+id/number"
+        android:layout_toEndOf="@+id/number"
+        android:layout_marginLeft="46dp"
+        android:layout_marginStart="46dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/imsiText"
+        android:layout_alignBottom="@+id/imsi"
+        android:layout_alignLeft="@+id/imeiText"
+        android:layout_alignStart="@+id/imeiText" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/numberText"
+        android:layout_alignBottom="@+id/number"
+        android:layout_alignLeft="@+id/imsiText"
+        android:layout_alignStart="@+id/imsiText" />
+
+</RelativeLayout>
