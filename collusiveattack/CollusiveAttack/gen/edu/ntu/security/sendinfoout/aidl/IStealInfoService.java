@@ -1,6 +1,10 @@
 /*
  * This file is auto-generated.  DO NOT MODIFY.
+<<<<<<< HEAD
  * Original file: C:\\Users\\gzmeng\\git\\AndroidSamples\\collusiveattack\\CollusiveAttack\\src\\edu\\ntu\\security\\sendinfoout\\aidl\\IStealInfoService.aidl
+=======
+ * Original file: /home/pillar/git/AndroidSamples/collusiveattack/CollusiveAttack/src/edu/ntu/security/sendinfoout/aidl/IStealInfoService.aidl
+>>>>>>> 8b34b5a56084fa84b3489036b0b19f0b9cf9cc5a
  */
 package edu.ntu.security.sendinfoout.aidl;
 public interface IStealInfoService extends android.os.IInterface
