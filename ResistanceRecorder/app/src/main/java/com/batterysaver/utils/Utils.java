@@ -1,17 +1,23 @@
 package com.batterysaver.utils;
 
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.io.OutputStream;
+import java.io.OutputStreamWriter;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 
 import android.app.ActivityManager;
 import android.app.ActivityManager.RunningServiceInfo;
@@ -27,7 +33,70 @@ import android.telephony.TelephonyManager;
 import android.util.Log;
 import android.widget.Toast;
 
+import batterysaver.battery.com.resistancerecorder.Constants;
+import batterysaver.battery.com.resistancerecorder.LoggedFile;
+
 public class Utils {
+
+
+	//Fix the bug: if there does not exist the folder batterysaver, we create it
+	private static void initFileSystem(){
+		File f = new File(Constants.getConfigFolderPath());
+		if(!f.exists()){
+			f.mkdir();
+		}
+	}
+	public static void saveLoggedFiles(List<LoggedFile> fileList){
+		initFileSystem();
+		File file = new File(Constants.getConfigFilePath());
+		BufferedWriter writer = null;
+		try {
+			File dir = new File(Constants.getConfigFilePath());
+			dir.delete();
+			writer = new BufferedWriter(new FileWriter(new File(Constants.getConfigFilePath())));
+			for (LoggedFile lf : fileList){
+				writer.write(lf.toString()+"\n");
+			}
+
+		} catch (IOException e) {
+			e.printStackTrace();
+		}finally {
+			if (writer != null){
+				try {
+					writer.close();
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+			}
+		}
+	}
+
+	public static List<LoggedFile> getLoggedFilesFromFile() {
+		initFileSystem();
+		List<LoggedFile> files = new ArrayList<LoggedFile>();
+		BufferedReader reader = null;
+		try {
+			reader = new BufferedReader(new FileReader(new File(Constants.getConfigFilePath())));
+            String line = null;
+			while ((line = reader.readLine()) != null) {
+				String[] arr = line.split("\\s");
+				if (arr.length == 2){
+					files.add(LoggedFile.createLoggedFile(arr[0], arr[1]));
+				}
+            }
+		} catch (IOException e) {
+			e.printStackTrace();
+		} finally {
+			if (reader != null){
+				try {
+					reader.close();
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+			}
+		}
+		return files;
+	}
 
 	public static String guessName(String srcUrl) {
 		String[] arr = srcUrl.split("/");
@@ -62,14 +131,15 @@ public class Utils {
 	}
 	
 	public static String getFileContent(String filePath) throws IOException{
-		String text = "";
 		File file = new File(filePath);
 		BufferedReader reader = new BufferedReader(new FileReader(file));
-		while (reader.ready()) {
-			text += (reader.readLine() + "\n");
-		}
+        String line = null;
+        StringBuilder sb = new StringBuilder();
+        while ((line = reader.readLine()) != null){
+            sb.append(line+"\n");
+        }
 		reader.close();
-		return text;
+		return sb.toString();
 	}
 	
 	public static void copyfile(String srFile, String dtFile){
